@@ -21,12 +21,15 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
 
-// Session middleware for OAuth (in-memory store for development)
+// Session middleware for OAuth
+const MongoStore = require('connect-mongo');
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'session_secret',
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     cookie: { httpOnly: true, sameSite: 'lax' },
   })
 );
