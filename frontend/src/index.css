@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  @apply font-body text-slate-800 bg-slate-50 transition-colors duration-500;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.dark body {
+  @apply text-slate-100 bg-dark-bg;
+}
+
+/* Beautiful Animated Background Glows */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: auto;
+  border-radius: 999px;
+  filter: blur(140px);
+  z-index: -1;
+  animation: pulse-slow 15s ease-in-out infinite alternate;
+}
+
+body::before {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(104, 117, 245, 0.15), transparent 70%);
+}
+
+body::after {
+  bottom: -10%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12), transparent 70%);
+}
+
+.dark body::before {
+  background: radial-gradient(circle, rgba(104, 117, 245, 0.25), transparent 70%);
+}
+
+.dark body::after {
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.2), transparent 70%);
+}
+
+@keyframes pulse-slow {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+  50% { transform: scale(1.1) translate(2%, 2%); opacity: 1; }
+  100% { transform: scale(0.95) translate(-2%, -2%); opacity: 0.8; }
+}
+
+/* Glassmorphic Components */
+.glass-card {
+  @apply bg-white/60 border border-white/40 shadow-glass-light backdrop-blur-glass transition-all duration-300;
+}
+
+.glass-card-dark, .dark .glass-card {
+  @apply bg-dark-card/60 border-dark-border/60 shadow-glass backdrop-blur-glass;
+}
+
+/* Enhancing hover states universally for glass components */
+.glass-card:hover {
+  @apply shadow-lg border-white/60;
+  transform: translateY(-2px);
+}
+.dark .glass-card:hover {
+  @apply border-brand-500/30;
+  box-shadow: 0 10px 40px -10px rgba(104, 117, 245, 0.4);
+}
+
+/* Typography Utilities */
+.section-title {
+  @apply font-display text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white bg-clip-text;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-brand-500 to-sky-400 text-transparent bg-clip-text;
+}
+
+.subtle-text {
+  @apply text-slate-500 dark:text-slate-400 font-medium;
+}
+.card-title {
+  @apply font-display text-xl font-semibold text-slate-800 dark:text-slate-100;
+}
+
+/* Premium Form Elements */
+.input-field {
+  @apply w-full rounded-xl bg-white/80 dark:bg-dark-card border border-slate-200 dark:border-dark-border text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all duration-300 outline-none;
+}
+
+/* Premium Buttons */
+.btn-primary {
+  @apply relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-400 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(104,117,245,0.6)] active:scale-95;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-dark-border bg-white/50 dark:bg-dark-card/50 px-5 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-dark-border hover:shadow-md active:scale-95;
+}
+
