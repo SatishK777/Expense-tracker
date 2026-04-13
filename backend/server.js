@@ -22,7 +22,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 // Session middleware for OAuth
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo').default;
 
 app.use(
   session({
